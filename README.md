@@ -11,6 +11,9 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+![Screenrecorder-2021-04-20-17-10-08-287](https://user-images.githubusercontent.com/76491642/115390491-ea052100-a1fb-11eb-8079-849fd8255b1e.gif)
+
+
 # Thank You!
 Please :star: this repo and share it with others
 
