@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path/path.dart';
 
 class PdfView extends StatefulWidget {
-  final File? selectedFile;
-  const PdfView({Key? key, this.selectedFile}) : super(key: key);
+  final File selectedFile;
+  const PdfView({Key key, this.selectedFile}) : super(key: key);
 
   @override
   _PdfViewState createState() => _PdfViewState();
@@ -13,37 +12,33 @@ class PdfView extends StatefulWidget {
 
 class _PdfViewState extends State<PdfView> {
 
-  PDFViewController? controller;
-  int? pages = 0;
-  int? indexPage = 0;
+  PDFViewController controller;
+  int pages = 0;
+  int indexPage = 0;
 
   @override
   Widget build(BuildContext context) {
-
-    final fileName = basenameWithoutExtension(widget.selectedFile!.path);
-    final filePages = '${indexPage! + 1} of $pages';
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(fileName,
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300)
+        title: Text(widget.selectedFile.path.split('/').last.split('.').first,
+            style: TextStyle(color: Colors.black)
         ),
-        actions: pages! >= 2 ? [
+        actions: pages >= 2 ? [
           Padding(
             padding: const EdgeInsets.all(10),
             child: Center(
-                child: Text(filePages,
-                    style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w300)
-                ),
+              child: Text('${indexPage + 1} of $pages',
+                  style: TextStyle(fontSize: 16, color: Colors.black)
+              ),
             ),
           ),
         ] : null,
-        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: PDFView(
-        filePath: widget.selectedFile!.path,
+        filePath: widget.selectedFile.path,
         onRender: (pages) {
           setState(() => this.pages = pages);
         },
